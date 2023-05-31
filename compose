@@ -1,0 +1,14 @@
+version: "2.1"
+services:
+  qbittorrent:
+    image: qbittorrent-nox:latest
+    container_name: qbittorrent
+    volumes:
+      - <PATH TO CONFIGS>:/config/qBittorrent
+      - <PATH TO DOWNLAODS>:/downloads
+    ports:
+      - 8080:8080
+      - 43936:43936
+      - 43936:43936/udp
+    restart: unless-stopped
+    mem_limit: 300m
