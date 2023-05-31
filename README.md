@@ -24,7 +24,35 @@ to run as yourself and have WebUI running on http://localhost:8080 (username: ad
 
 ### Usage
 
+#### Docker-compose
 
+Change <PATH TO CONFIGS> & <PATH TO DOWNLAODS> to you folders on docker host
 
+```
+version: "2.1"
+services:
+  qbittorrent:
+    image: qbittorrent-nox:latest
+    container_name: qbittorrent
+    volumes:
+      - <PATH TO CONFIGS>:/config/qBittorrent
+      - <PATH TO DOWNLAODS>:/downloads
+    ports:
+      - 8080:8080
+      - 43936:43936
+      - 43936:43936/udp
+    restart: unless-stopped
+    mem_limit: 300m
+```
 
+#### Shell
 
+```
+git clone https://github.com/Gezzl/qBittorrent-Docker.git
+
+cd qBittorrent-Docker
+
+docker build -t qbittorrent-nox:latest .
+
+docker-compose -f compose up -d
+```
