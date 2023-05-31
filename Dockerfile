@@ -25,8 +25,8 @@ RUN adduser \
 RUN cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     mkdir /config && \
     mkdir /downloads && \
-    chown qbtUser:qbtUser -R /config && \
-    chown qbtUser:qbtUser -R /downloads 
+    chown qbtUser:qbtUser -R /config/ && \
+    chown qbtUser:qbtUser -R /downloads/ 
 #copy entrypoint.sh
 COPY entrypoint.sh /entrypoint.sh
 #Expose Ports:
