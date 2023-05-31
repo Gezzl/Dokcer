@@ -26,7 +26,7 @@ to run as yourself and have WebUI running on http://localhost:8080 (username: ad
 
 #### Docker-compose
 
-Change <PATH TO CONFIGS> & <PATH TO DOWNLAODS> to you folders on docker host
+Change 'PATH TO CONFIGS' & 'PATH TO DOWNLAODS' to you folders on docker host
 
 ```
 version: "2.1"
