@@ -29,7 +29,9 @@ to run as yourself and have WebUI running on http://localhost:8080 (username: ad
 All value can be changed after image build in .env
 
 ```TZ```=Europe/Moscow (TZ environment variable specifies the time zone of the system)
+
 ```GID```=10000 (GID of qbituser)
+
 ```UID```=10000 (UID of qbituser)
 
 #### Example
@@ -89,10 +91,11 @@ docker run -d \
 --env-file .env \
 -p 8080:8080 \
 -p 43936:43936 \
--p 43936:43936 udp \
+-p 43936:43936/udp \
 -v <PATH TO CONFIGS>:/config/qBittorrent\
 -v <PATH TO DOWNLAODS>:/downloads\
 --restart unless-stopped \
+--memory=300 \
 qbittorrent-nox:latest
 
 ```
