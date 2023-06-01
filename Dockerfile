@@ -6,7 +6,12 @@ LABEL repository="github.com/Gezzl/qBittorrent-Docker"
 LABEL image="qBittorrent-nox"
 LABEL OS="alpine/latest"
 #environment
-ENV TZ=Europe/Moscow
+ARG TZ
+ENV TZ=${TZ:-1}
+ARG UID
+ENV UID=${UID:-1}
+ARG GID
+ENV GID=${GID:-1}
 #install packages
 RUN apk --no-cache add \
     qbittorrent-nox \
@@ -18,15 +23,16 @@ RUN adduser \
     -D \
     -H \
     -s /sbin/nologin \
-    -u 1000 \
-    qbtUser && \
+    -u $UID \
+    -g $GID \
+    qbituser &&\
     echo "permit nopass :root" >> "/etc/doas.d/doas.conf"
-#add TZ and Folders
-RUN cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
-    mkdir /config && \
+#add folders
+RUN cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &&\
+    mkdir -p /config/ && \
     mkdir /downloads && \
-    chown qbtUser:qbtUser -R /config/ && \
-    chown qbtUser:qbtUser -R /downloads/ 
+    chown qbituser:qbituser -R /config && \
+    chown qbituser:qbituser -R /downloads
 #copy entrypoint.sh
 COPY entrypoint.sh /entrypoint.sh
 #Expose Ports:

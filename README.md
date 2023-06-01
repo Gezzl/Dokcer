@@ -22,7 +22,23 @@ to run as yourself and have WebUI running on http://localhost:8080 (username: ad
 
 ```/downloads:```  Download location
 
-### Usage
+## ARG
+
+### ARG 
+
+All value can be changed after image build in .env
+
+```TZ```=Europe/Moscow (TZ environment variable specifies the time zone of the system)
+```GID```=10000 (GID of qbituser)
+```UID```=10000 (UID of qbituser)
+
+#### Example
+
+```
+docker build --build-arg TZ=Europe/Moscow --build-arg UID=10000 --build-arg GID=10000 -t qbittorrent-nox:latest  .
+```
+
+## Usage
 
 #### Docker-compose
 
@@ -41,8 +57,22 @@ services:
       - 8080:8080
       - 43936:43936
       - 43936:43936/udp
+    enviroments:
+      - TZ=Europe/Moscow
+      - UID=10000
+      - GID=10000
     restart: unless-stopped
     mem_limit: 300m
+```
+
+```
+git clone https://github.com/Gezzl/qBittorrent-Docker.git
+
+cd qBittorrent-Docker
+
+docker build --build-arg TZ=Europe/Moscow --build-arg UID=10000 --build-arg GID=10000 -t qbittorrent-nox:latest  .
+
+docker-compose -f compose up -d
 ```
 
 #### Shell
@@ -52,7 +82,17 @@ git clone https://github.com/Gezzl/qBittorrent-Docker.git
 
 cd qBittorrent-Docker
 
-docker build -t qbittorrent-nox:latest .
+docker build --build-arg TZ=Europe/Moscow --build-arg UID=10000 --build-arg GID=10000 -t qbittorrent-nox:latest  .
 
-docker-compose -f compose up -d
+docker run -d \
+--name=qbittorrent-nox \
+--env-file .env \
+-p 8080:8080 \
+-p 43936:43936 \
+-p 43936:43936 udp \
+-v <PATH TO CONFIGS>:/config/qBittorrent\
+-v <PATH TO DOWNLAODS>:/downloads\
+--restart unless-stopped \
+qbittorrent-nox:latest
+
 ```

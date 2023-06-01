@@ -10,5 +10,9 @@ services:
       - 8080:8080
       - 43936:43936
       - 43936:43936/udp
+    enviroments:
+      - TZ=Europe/Moscow
+      - UID=10000
+      - GID=10000
     restart: unless-stopped
     mem_limit: 300m
