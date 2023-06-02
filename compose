@@ -12,7 +12,7 @@ services:
       - 43936:43936/udp
     environment:
       - TZ=Europe/Moscow
-      - UID=10000
-      - GID=10000
+      - UID=1000
+      - GID=1000
     restart: unless-stopped
     mem_limit: 300m
