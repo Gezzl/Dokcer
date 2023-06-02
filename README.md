@@ -30,14 +30,14 @@ All value can be changed after image build in .env
 
 ```TZ```=Europe/Moscow (TZ environment variable specifies the time zone of the system)
 
-```GID```=10000 (GID of qbituser)
+```GID```=1000 (GID of qbituser)
 
-```UID```=10000 (UID of qbituser)
+```UID```=1000 (UID of qbituser)
 
 #### Example
 
 ```
-docker build --build-arg TZ=Europe/Moscow --build-arg UID=10000 --build-arg GID=10000 -t qbittorrent-nox:latest  .
+docker build --build-arg TZ=Europe/Moscow --build-arg UID=1000 --build-arg GID=1000 -t qbittorrent-nox:latest  .
 ```
 
 ## Usage
@@ -61,8 +61,8 @@ services:
       - 43936:43936/udp
     enviroments:
       - TZ=Europe/Moscow
-      - UID=10000
-      - GID=10000
+      - UID=1000
+      - GID=1000
     restart: unless-stopped
     mem_limit: 300m
 ```
@@ -72,7 +72,7 @@ git clone https://github.com/Gezzl/qBittorrent-Docker.git
 
 cd qBittorrent-Docker
 
-docker build --build-arg TZ=Europe/Moscow --build-arg UID=10000 --build-arg GID=10000 -t qbittorrent-nox:latest  .
+docker build --build-arg TZ=Europe/Moscow --build-arg UID=1000 --build-arg GID=1000 -t qbittorrent-nox:latest  .
 
 docker-compose -f compose up -d
 ```
@@ -84,7 +84,7 @@ git clone https://github.com/Gezzl/qBittorrent-Docker.git
 
 cd qBittorrent-Docker
 
-docker build --build-arg TZ=Europe/Moscow --build-arg UID=10000 --build-arg GID=10000 -t qbittorrent-nox:latest  .
+docker build --build-arg TZ=Europe/Moscow --build-arg UID=1000 --build-arg GID=1000 -t qbittorrent-nox:latest  .
 
 docker run -d \
 --name=qbittorrent-nox \
