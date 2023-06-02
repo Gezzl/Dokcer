@@ -59,7 +59,7 @@ services:
       - 8080:8080
       - 43936:43936
       - 43936:43936/udp
-    enviroments:
+    environment:
       - TZ=Europe/Moscow
       - UID=1000
       - GID=1000
